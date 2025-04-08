@@ -19,3 +19,16 @@ asyncio.run(run())
 sudo apt update
 sudo apt install bluetooth bluez python3-pip
 pip3 install bleak
+
+from bleak import BleakClient
+
+address = "AA:BB:CC:DD:EE:FF"  # Replace with your bulb's MAC
+ON_OFF_CHAR_UUID = "0000fff3-0000-1000-8000-00805f9b34fb"  # Guess based on known devices
+TURN_ON = bytearray([0xCC, 0x23, 0x33])  # Example command
+
+async def main():
+    async with BleakClient(address) as client:
+        await client.write_gatt_char(ON_OFF_CHAR_UUID, TURN_ON)
+
+import asyncio
+asyncio.run(main())
