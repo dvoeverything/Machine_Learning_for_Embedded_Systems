@@ -32,3 +32,20 @@ async def main():
 
 import asyncio
 asyncio.run(main())
+
+
+from bleak import BleakClient
+
+address = "80:AC:C8:F3:5A:B4"  # Your Sengled bulb's Bluetooth MAC
+
+async def main():
+    async with BleakClient(address) as client:
+        print("Connected!")
+        services = await client.get_services()
+        for service in services:
+            print(f"\nService: {service.uuid}")
+            for char in service.characteristics:
+                print(f"  Characteristic: {char.uuid} — {char.properties}")
+
+import asyncio
+asyncio.run(main())
