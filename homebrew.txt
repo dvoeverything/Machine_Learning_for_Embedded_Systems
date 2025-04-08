@@ -16,3 +16,6 @@ async def run():
 
 asyncio.run(run())
 
+sudo apt update
+sudo apt install bluetooth bluez python3-pip
+pip3 install bleak
