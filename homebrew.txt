@@ -6,3 +6,13 @@
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc
 source ~/.zshrc
 can I use the configuration file to use cpu instead of gpu 
+import asyncio
+from bleak import BleakScanner
+
+async def run():
+    devices = await BleakScanner.discover()
+    for d in devices:
+        print(d)
+
+asyncio.run(run())
+
